@@ -31,7 +31,10 @@ export class HomeComponent implements OnInit {
 
     this.http.post('https://localhost:44307/weatherforecast', formData)
       .subscribe(
-        data => console.log('success'),
+        data => {
+          console.log('success');
+          console.log(data);
+        },
         error => console.log(error)
       )
   }
