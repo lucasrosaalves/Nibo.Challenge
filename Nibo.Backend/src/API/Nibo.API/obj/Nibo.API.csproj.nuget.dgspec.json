@@ -1,0 +1,326 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\API\\Nibo.API\\Nibo.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\Nibo.Util\\Nibo.Util.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\Nibo.Util\\Nibo.Util.csproj",
+        "projectName": "Nibo.Util",
+        "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\Nibo.Util\\Nibo.Util.csproj",
+        "packagesPath": "C:\\Users\\lucas.alves\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\Nibo.Util\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lucas.alves\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Projetos\\Pacotes Nuget": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/onsvsts/_packaging/ONS/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\API\\Nibo.API\\Nibo.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\API\\Nibo.API\\Nibo.API.csproj",
+        "projectName": "Nibo.API",
+        "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\API\\Nibo.API\\Nibo.API.csproj",
+        "packagesPath": "C:\\Users\\lucas.alves\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\API\\Nibo.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lucas.alves\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Projetos\\Pacotes Nuget": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/onsvsts/_packaging/ONS/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\Nibo.Util\\Nibo.Util.csproj": {
+                "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\Nibo.Util\\Nibo.Util.csproj"
+              },
+              "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Application\\Nibo.Application\\Nibo.Application.csproj": {
+                "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Application\\Nibo.Application\\Nibo.Application.csproj"
+              },
+              "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj": {
+                "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.9.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.4.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Application\\Nibo.Application\\Nibo.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Application\\Nibo.Application\\Nibo.Application.csproj",
+        "projectName": "Nibo.Application",
+        "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Application\\Nibo.Application\\Nibo.Application.csproj",
+        "packagesPath": "C:\\Users\\lucas.alves\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Application\\Nibo.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lucas.alves\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Projetos\\Pacotes Nuget": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/onsvsts/_packaging/ONS/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\Nibo.Util\\Nibo.Util.csproj": {
+                "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\Nibo.Util\\Nibo.Util.csproj"
+              },
+              "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj": {
+                "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj"
+              },
+              "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Infra\\Nibo.Infra\\Nibo.Infra.csproj": {
+                "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Infra\\Nibo.Infra\\Nibo.Infra.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj",
+        "projectName": "Nibo.Domain",
+        "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj",
+        "packagesPath": "C:\\Users\\lucas.alves\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lucas.alves\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Projetos\\Pacotes Nuget": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/onsvsts/_packaging/ONS/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Infra\\Nibo.Infra\\Nibo.Infra.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Infra\\Nibo.Infra\\Nibo.Infra.csproj",
+        "projectName": "Nibo.Infra",
+        "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Infra\\Nibo.Infra\\Nibo.Infra.csproj",
+        "packagesPath": "C:\\Users\\lucas.alves\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Infra\\Nibo.Infra\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\lucas.alves\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Projetos\\Pacotes Nuget": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/onsvsts/_packaging/ONS/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

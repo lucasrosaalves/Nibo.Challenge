@@ -1,0 +1,48 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Nibo.Application/1.0.0": {
+        "dependencies": {
+          "Nibo.Domain": "1.0.0",
+          "Nibo.Infra": "1.0.0",
+          "Nibo.Util": "1.0.0"
+        },
+        "runtime": {
+          "Nibo.Application.dll": {}
+        }
+      },
+      "Nibo.Domain/1.0.0": {
+        "runtime": {
+          "Nibo.Domain.dll": {}
+        }
+      },
+      "Nibo.Infra/1.0.0": {
+        "runtime": {
+          "Nibo.Infra.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Nibo.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Nibo.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Nibo.Infra/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

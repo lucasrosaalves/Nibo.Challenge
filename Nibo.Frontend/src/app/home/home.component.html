@@ -1,0 +1,13 @@
+<div class="container">
+  <form  #form="ngForm" (ngSubmit)="submit(form)">
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Importar arquivo</label>
+      <input type="file" class="form-control-file" ngModel #arquivos="ngModel"
+      (change)="fileChange($event)" 
+       name="arquivos" id="arquivos" multiple required>
+    </div>
+    <button class="btn btn-primary" [disabled]="form.invalid">
+      Enviar
+    </button>
+  </form>
+</div>

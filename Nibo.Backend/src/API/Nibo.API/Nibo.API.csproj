@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>bfb7f29c-d165-49e1-9c81-6867bf83fe96</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Nibo.Util\Nibo.Util.csproj" />
+    <ProjectReference Include="..\..\Application\Nibo.Application\Nibo.Application.csproj" />
+    <ProjectReference Include="..\..\Domain\Nibo.Domain\Nibo.Domain.csproj" />
+  </ItemGroup>
+
+
+</Project>
