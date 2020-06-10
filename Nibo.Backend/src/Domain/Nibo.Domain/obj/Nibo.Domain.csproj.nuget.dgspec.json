@@ -46,6 +46,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[8.6.2, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

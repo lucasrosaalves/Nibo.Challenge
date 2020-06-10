@@ -8,12 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="8.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\Nibo.Domain\Nibo.Domain.csproj" />
+    <ProjectReference Include="..\..\Infra\Nibo.Infra\Nibo.Infra.csproj" />
     <ProjectReference Include="..\..\Util\Nibo.Util\Nibo.Util.csproj" />
   </ItemGroup>
 

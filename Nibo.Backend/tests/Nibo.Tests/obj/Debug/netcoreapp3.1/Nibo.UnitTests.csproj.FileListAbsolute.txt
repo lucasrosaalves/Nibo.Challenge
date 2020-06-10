@@ -91,3 +91,4 @@ C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\obj\Debug\netcoreapp3.1\N
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\obj\Debug\netcoreapp3.1\Nibo.UnitTests.csproj.CopyComplete
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\obj\Debug\netcoreapp3.1\Nibo.UnitTests.dll
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\obj\Debug\netcoreapp3.1\Nibo.UnitTests.pdb
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\obj\Debug\netcoreapp3.1\Nibo.UnitTests.csprojAssemblyReference.cache

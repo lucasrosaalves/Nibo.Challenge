@@ -24,8 +24,11 @@
     ".NETCoreApp,Version=v3.1": {
       "Nibo.API/1.0.0": {
         "dependencies": {
+          "MediatR": "8.0.1",
+          "MediatR.Extensions.Microsoft.DependencyInjection": "8.0.0",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.9.10",
           "Nibo.Domain": "1.0.0",
+          "Nibo.Infra": "1.0.0",
           "Nibo.Util": "1.0.0",
           "Swashbuckle.AspNetCore": "5.4.1",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -119,7 +122,6 @@
           "Microsoft.Extensions.Configuration.KeyPerFile": "3.1.0.0",
           "Microsoft.Extensions.Configuration.UserSecrets": "3.1.0.0",
           "Microsoft.Extensions.Configuration.Xml": "3.1.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.0.0",
           "Microsoft.Extensions.DependencyInjection": "3.1.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions": "3.1.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "3.1.0.0",
@@ -164,7 +166,7 @@
           "System.Collections.Immutable": "1.2.5.0",
           "System.Collections.NonGeneric": "4.1.2.0",
           "System.Collections.Specialized": "4.1.2.0",
-          "System.ComponentModel.Annotations": "4.3.1.0",
+          "System.ComponentModel.Annotations.Reference": "4.3.1.0",
           "System.ComponentModel.DataAnnotations": "4.0.0.0",
           "System.ComponentModel": "4.0.4.0",
           "System.ComponentModel.EventBasedAsync": "4.1.2.0",
@@ -318,7 +320,58 @@
           "Nibo.API.dll": {}
         }
       },
+      "FluentValidation/8.6.2": {
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.4.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.6.2.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/FluentValidation.dll": {}
+        }
+      },
+      "MediatR/8.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/MediatR.dll": {
+            "assemblyVersion": "8.0.1.0",
+            "fileVersion": "8.0.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/MediatR.dll": {}
+        }
+      },
+      "MediatR.Extensions.Microsoft.DependencyInjection/8.0.0": {
+        "dependencies": {
+          "MediatR": "8.0.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.5"
+        },
+        "runtime": {
+          "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/MediatR.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {},
+      "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.5": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "3.1.5.0",
+            "fileVersion": "3.100.520.27009"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        }
+      },
       "Microsoft.OpenApi/1.1.4": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
@@ -378,8 +431,11 @@
           "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         }
       },
+      "System.ComponentModel.Annotations/4.4.1": {},
       "Nibo.Domain/1.0.0": {
         "dependencies": {
+          "FluentValidation": "8.6.2",
+          "MediatR": "8.0.1",
           "Nibo.Util": "1.0.0"
         },
         "runtime": {
@@ -387,6 +443,18 @@
         },
         "compile": {
           "Nibo.Domain.dll": {}
+        }
+      },
+      "Nibo.Infra/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.5",
+          "Nibo.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Nibo.Infra.dll": {}
+        },
+        "compile": {
+          "Nibo.Infra.dll": {}
         }
       },
       "Nibo.Util/1.0.0": {
@@ -943,12 +1011,6 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.0.0": {
-        "compile": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
-        },
-        "compileOnly": true
-      },
       "Microsoft.Extensions.DependencyInjection/3.1.0.0": {
         "compile": {
           "Microsoft.Extensions.DependencyInjection.dll": {}
@@ -1213,7 +1275,7 @@
         },
         "compileOnly": true
       },
-      "System.ComponentModel.Annotations/4.3.1.0": {
+      "System.ComponentModel.Annotations.Reference/4.3.1.0": {
         "compile": {
           "System.ComponentModel.Annotations.dll": {}
         },
@@ -2097,12 +2159,40 @@
       "serviceable": false,
       "sha512": ""
     },
+    "FluentValidation/8.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-N2vz+f6pAX9AI19hu83U2LJjjc/ETzWGlICVanu3DIG76QhzEu3PR/CQSFBX69PRuBTivrW4jhBzeV7dXIfqyw==",
+      "path": "fluentvalidation/8.6.2",
+      "hashPath": "fluentvalidation.8.6.2.nupkg.sha512"
+    },
+    "MediatR/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nqtv05FHNNNLmEv4QN9pRtmSLa0bnDPciOjLKpA/k5FZIVS72vPyY3/1lHQ9V/dcQSMA5ZLig62SyRk2cSKNBA==",
+      "path": "mediatr/8.0.1",
+      "hashPath": "mediatr.8.0.1.nupkg.sha512"
+    },
+    "MediatR.Extensions.Microsoft.DependencyInjection/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qGa+dbfrpk6y01swgc0uM+jG5tkb5xVeY1P4iByd3NQCDO7nmrMBnBRoMGhKlSigQ6iWXDiwOpzC01W4xrJxLg==",
+      "path": "mediatr.extensions.microsoft.dependencyinjection/8.0.0",
+      "hashPath": "mediatr.extensions.microsoft.dependencyinjection.8.0.0.nupkg.sha512"
+    },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-LH4OE/76F6sOCslif7+Xh3fS/wUUrE5ryeXAMcoCnuwOQGT5Smw0p57IgDh/pHgHaGz/e+AmEQb7pRgb++wt0w==",
       "path": "microsoft.extensions.apidescription.server/3.0.0",
       "hashPath": "microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2VSCj2TZPMdeEi279Lawi6qJQu4+sEWizSOYrhY6hapyS1jxn1jVUZT1Ugv68bya+x8+3lD4+RqhUZql9PhISQ==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/3.1.5",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.3.1.5.nupkg.sha512"
     },
     "Microsoft.OpenApi/1.1.4": {
       "type": "package",
@@ -2146,7 +2236,19 @@
       "path": "swashbuckle.aspnetcore.swaggerui/5.4.1",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.5.4.1.nupkg.sha512"
     },
+    "System.ComponentModel.Annotations/4.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ToiYqSCioqhtspq2O/jYKtyTC/T0uwWHBTYlzCi6PRbSSHArN1IaRWeHffDamvms5sye5FDUWCfNZgubQpNRsA==",
+      "path": "system.componentmodel.annotations/4.4.1",
+      "hashPath": "system.componentmodel.annotations.4.4.1.nupkg.sha512"
+    },
     "Nibo.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Nibo.Infra/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2611,11 +2713,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Microsoft.Extensions.DependencyInjection/3.1.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
@@ -2836,7 +2933,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "System.ComponentModel.Annotations/4.3.1.0": {
+    "System.ComponentModel.Annotations.Reference/4.3.1.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

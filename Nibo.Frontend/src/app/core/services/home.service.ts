@@ -14,6 +14,6 @@ export class HomeService {
             formData.append('files', fileList[index], fileList[index].name);
         }
 
-        return this.http.post('https://localhost:44307/weatherforecast', formData);
+        return this.http.post('https://localhost:44307/api/Account/import', formData);
     }
 }

@@ -9,12 +9,10 @@ namespace Nibo.Domain.Entities
     {
         private List<Transaction> _transactions;
 
-        public string Bank { get; private set; }
-        public string Account { get; private set; }
+        public AccountDetails AccountDetails { get; private set; }
         public DateTime StartDate => _transactions.Min(p => p.Date);
         public DateTime EndDate => _transactions.Max(p => p.Date);
         public IReadOnlyCollection<Transaction> Transactions => _transactions ?? new List<Transaction>();
-
 
         protected Extract() { }
 
@@ -22,23 +20,18 @@ namespace Nibo.Domain.Entities
         {
             if (lines is null) { return; }
 
-            SetBank(lines);
-            SetAccount(lines);
-            SetTransacoes(lines);
+            SetAccountDetails(lines);
+            SetTransactions(lines);
         }
 
-        private void SetBank(IEnumerable<string> lines)
+        private void SetAccountDetails(IEnumerable<string> lines)
         {
-            Bank = GetFirstElementValueByTag(lines, ETag.BANKID);
+            var bank = GetFirstElementByTag(lines, ETag.BANKID);
+            var accountNumber = GetFirstElementByTag(lines, ETag.ACCTID);
+
+            AccountDetails = new AccountDetails(bank, accountNumber);
         }
-
-        private void SetAccount(IEnumerable<string> lines)
-        {
-            Account = GetFirstElementValueByTag(lines, ETag.ACCTID);
-        }
-
-
-        private void SetTransacoes(IEnumerable<string> lines)
+        private void SetTransactions(IEnumerable<string> lines)
         {
             _transactions = new List<Transaction>();
             var ranges = GetRangeOfElementsByTag(lines, ETag.STMTTRN);
@@ -49,17 +42,17 @@ namespace Nibo.Domain.Entities
             {
                 var elements = range.GetElementsBetweenRange(lines);
 
-                var type = GetFirstElementValueByTag(elements, ETag.TRNTYPE);
-                var date = GetFirstElementDateByTag(elements, ETag.DTPOSTED);
-                var value = GetFirstElementDecimalByTag(elements, ETag.TRNAMT);
-                var description = GetFirstElementValueByTag(elements, ETag.MEMO);
+                var type = GetFirstElementByTag(elements, ETag.TRNTYPE);
+                var date = GetFirstDateElementByTag(elements, ETag.DTPOSTED);
+                var value = GetFirstDecimalElementByTag(elements, ETag.TRNAMT);
+                var description = GetFirstElementByTag(elements, ETag.MEMO);
 
-                if (!value.HasValue)
+                if (!value.HasValue || !date.HasValue)
                 {
                     continue;
                 }
 
-                _transactions.Add(new Transaction(type, date, value.Value, description));
+                _transactions.Add(new Transaction(type, date.Value, value.Value, description));
             }
         }
 
@@ -98,7 +91,6 @@ namespace Nibo.Domain.Entities
 
             return null;
         }
-
         private string GetStartTagNode(ETag tag)
         {
             return string.Concat("<", @tag.ToString(), ">");
@@ -109,7 +101,7 @@ namespace Nibo.Domain.Entities
             return string.Concat("</", @tag.ToString(), ">");
         }
 
-        private string GetFirstElementValueByTag(IEnumerable<string> lines, ETag @tag)
+        private string GetFirstElementByTag(IEnumerable<string> lines, ETag @tag)
         {
             string tagValue = GetStartTagNode(@tag);
 
@@ -118,9 +110,9 @@ namespace Nibo.Domain.Entities
             return element.Split('>').ElementAt(1);
         }
 
-        private decimal? GetFirstElementDecimalByTag(IEnumerable<string> lines, ETag @tag)
+        private decimal? GetFirstDecimalElementByTag(IEnumerable<string> lines, ETag @tag)
         {
-            string value = GetFirstElementValueByTag(lines, @tag);
+            string value = GetFirstElementByTag(lines, @tag);
 
             try
             {
@@ -132,30 +124,37 @@ namespace Nibo.Domain.Entities
             }
         }
 
-        private DateTime GetFirstElementDateByTag(IEnumerable<string> lines, ETag @tag)
+        private DateTime? GetFirstDateElementByTag(IEnumerable<string> lines, ETag @tag)
         {
-            string value = GetFirstElementValueByTag(lines, @tag);
+            string value = GetFirstElementByTag(lines, @tag);
 
-            if (string.IsNullOrWhiteSpace(value)) { return DateTime.MinValue; }
-
-            var sDate = new string(value.Where(char.IsDigit).ToArray());
-
-            if (string.IsNullOrWhiteSpace(sDate)) { return DateTime.MinValue; }
-
-            int year = int.Parse(sDate.Substring(0, 4));
-            int month = int.Parse(sDate.Substring(4, 2));
-            int day = int.Parse(sDate.Substring(6, 2));
-            int hour = sDate.Length >= 10 ? int.Parse(sDate.Substring(8, 2)) : 0;
-            int minute = sDate.Length >= 12 ? int.Parse(sDate.Substring(10, 2)) : 0;
-            int second = sDate.Length >= 14 ? int.Parse(sDate.Substring(12, 2)) : 0;
-
-            int daysInMonth = DateTime.DaysInMonth(year, month);
-            if (day > daysInMonth)
+            try
             {
-                day = daysInMonth;
-            }
-            return new DateTime(year, month, day, hour, minute, second);
+                if (string.IsNullOrWhiteSpace(value)) { return DateTime.MinValue; }
 
+                var sDate = new string(value.Where(char.IsDigit).ToArray());
+
+                if (string.IsNullOrWhiteSpace(sDate)) { return DateTime.MinValue; }
+
+                int year = int.Parse(sDate.Substring(0, 4));
+                int month = int.Parse(sDate.Substring(4, 2));
+                int day = int.Parse(sDate.Substring(6, 2));
+                int hour = sDate.Length >= 10 ? int.Parse(sDate.Substring(8, 2)) : 0;
+                int minute = sDate.Length >= 12 ? int.Parse(sDate.Substring(10, 2)) : 0;
+                int second = sDate.Length >= 14 ? int.Parse(sDate.Substring(12, 2)) : 0;
+
+                int daysInMonth = DateTime.DaysInMonth(year, month);
+                if (day > daysInMonth)
+                {
+                    day = daysInMonth;
+                }
+
+                return new DateTime(year, month, day, hour, minute, second);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

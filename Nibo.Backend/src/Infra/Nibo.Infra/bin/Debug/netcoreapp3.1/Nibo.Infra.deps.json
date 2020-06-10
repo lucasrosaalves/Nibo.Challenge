@@ -15,6 +15,25 @@
           "Nibo.Infra.dll": {}
         }
       },
+      "FluentValidation/8.6.2": {
+        "dependencies": {
+          "System.ComponentModel.Annotations": "4.4.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.6.2.0"
+          }
+        }
+      },
+      "MediatR/8.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/MediatR.dll": {
+            "assemblyVersion": "8.0.1.0",
+            "fileVersion": "8.0.1.0"
+          }
+        }
+      },
       "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.5": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
@@ -23,8 +42,11 @@
           }
         }
       },
+      "System.ComponentModel.Annotations/4.4.1": {},
       "Nibo.Domain/1.0.0": {
         "dependencies": {
+          "FluentValidation": "8.6.2",
+          "MediatR": "8.0.1",
           "Nibo.Util": "1.0.0"
         },
         "runtime": {
@@ -44,12 +66,33 @@
       "serviceable": false,
       "sha512": ""
     },
+    "FluentValidation/8.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-N2vz+f6pAX9AI19hu83U2LJjjc/ETzWGlICVanu3DIG76QhzEu3PR/CQSFBX69PRuBTivrW4jhBzeV7dXIfqyw==",
+      "path": "fluentvalidation/8.6.2",
+      "hashPath": "fluentvalidation.8.6.2.nupkg.sha512"
+    },
+    "MediatR/8.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nqtv05FHNNNLmEv4QN9pRtmSLa0bnDPciOjLKpA/k5FZIVS72vPyY3/1lHQ9V/dcQSMA5ZLig62SyRk2cSKNBA==",
+      "path": "mediatr/8.0.1",
+      "hashPath": "mediatr.8.0.1.nupkg.sha512"
+    },
     "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.5": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-2VSCj2TZPMdeEi279Lawi6qJQu4+sEWizSOYrhY6hapyS1jxn1jVUZT1Ugv68bya+x8+3lD4+RqhUZql9PhISQ==",
       "path": "microsoft.extensions.dependencyinjection.abstractions/3.1.5",
       "hashPath": "microsoft.extensions.dependencyinjection.abstractions.3.1.5.nupkg.sha512"
+    },
+    "System.ComponentModel.Annotations/4.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ToiYqSCioqhtspq2O/jYKtyTC/T0uwWHBTYlzCi6PRbSSHArN1IaRWeHffDamvms5sye5FDUWCfNZgubQpNRsA==",
+      "path": "system.componentmodel.annotations/4.4.1",
+      "hashPath": "system.componentmodel.annotations.4.4.1.nupkg.sha512"
     },
     "Nibo.Domain/1.0.0": {
       "type": "project",

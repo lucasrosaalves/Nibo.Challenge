@@ -10,8 +10,7 @@ namespace Nibo.Domain.Entities
         private List<Transaction> _transactions;
 
         public Guid Id { get; private set; }
-        public string Bank { get; private set; }
-        public string Number { get; private set; }
+        public AccountDetails Details { get; private set; }
         public IReadOnlyCollection<Transaction> Transactions => _transactions ?? new List<Transaction>();
 
         protected Account() { }
@@ -19,8 +18,7 @@ namespace Nibo.Domain.Entities
         public Account(string bank, string number)
         {
             Id = Guid.NewGuid();
-            Bank = bank;
-            Number = number;
+            Details = new AccountDetails(bank, number);
             _transactions = new List<Transaction>();
         }
 

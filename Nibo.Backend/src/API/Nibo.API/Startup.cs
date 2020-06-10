@@ -1,9 +1,12 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Nibo.Domain.Commands;
+using System;
 
 namespace Nibo.API
 {
@@ -27,16 +30,13 @@ namespace Nibo.API
             Configuration = builder.Build();
         }
 
-
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
 
             services.AddCors(options =>
             {
-                options.AddPolicy("Total",
+                options.AddPolicy("NiboPolicy",
                     builder =>
                         builder
                             .AllowAnyOrigin()
@@ -54,6 +54,9 @@ namespace Nibo.API
                 });
 
             });
+
+
+            services.AddMediatR(typeof(Command));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -73,7 +76,7 @@ namespace Nibo.API
 
             app.UseRouting();
 
-            app.UseCors("Total");
+            app.UseCors("NiboPolicy");
 
             app.UseAuthorization();
 
