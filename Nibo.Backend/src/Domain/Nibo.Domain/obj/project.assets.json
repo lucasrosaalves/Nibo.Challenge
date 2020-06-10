@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "Nibo.Util/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Nibo.Util.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Nibo.Util.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Nibo.Util/1.0.0": {
+      "type": "project",
+      "path": "../../Util/Nibo.Util/Nibo.Util.csproj",
+      "msbuildProject": "../../Util/Nibo.Util/Nibo.Util.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "Nibo.Util >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\lucas.alves\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Util\\Nibo.Util\\Nibo.Util.csproj": {
+              "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Util\\Nibo.Util\\Nibo.Util.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

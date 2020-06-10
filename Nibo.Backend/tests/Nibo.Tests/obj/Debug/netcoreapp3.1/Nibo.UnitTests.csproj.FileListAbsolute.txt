@@ -86,7 +86,6 @@ C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\bin\Debug\netcoreapp3.1\z
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\obj\Debug\netcoreapp3.1\Nibo.UnitTests.csprojAssemblyReference.cache
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\obj\Debug\netcoreapp3.1\Nibo.UnitTests.AssemblyInfoInputs.cache
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\obj\Debug\netcoreapp3.1\Nibo.UnitTests.AssemblyInfo.cs
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\tests\Nibo.Tests\obj\Debug\netcoreapp3.1\Nibo.UnitTests.csproj.CopyComplete

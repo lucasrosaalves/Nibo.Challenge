@@ -25,7 +25,6 @@
       "Nibo.API/1.0.0": {
         "dependencies": {
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.9.10",
-          "Nibo.Application": "1.0.0",
           "Nibo.Domain": "1.0.0",
           "Nibo.Util": "1.0.0",
           "Swashbuckle.AspNetCore": "5.4.1",
@@ -379,33 +378,23 @@
           "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         }
       },
-      "Nibo.Application/1.0.0": {
+      "Nibo.Domain/1.0.0": {
         "dependencies": {
-          "Nibo.Domain": "1.0.0",
-          "Nibo.Infra": "1.0.0",
           "Nibo.Util": "1.0.0"
         },
         "runtime": {
-          "Nibo.Application.dll": {}
-        },
-        "compile": {
-          "Nibo.Application.dll": {}
-        }
-      },
-      "Nibo.Domain/1.0.0": {
-        "runtime": {
           "Nibo.Domain.dll": {}
         },
         "compile": {
           "Nibo.Domain.dll": {}
         }
       },
-      "Nibo.Infra/1.0.0": {
+      "Nibo.Util/1.0.0": {
         "runtime": {
-          "Nibo.Infra.dll": {}
+          "Nibo.Util.dll": {}
         },
         "compile": {
-          "Nibo.Infra.dll": {}
+          "Nibo.Util.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -2099,9 +2088,6 @@
           "WindowsBase.dll": {}
         },
         "compileOnly": true
-      },
-      "Nibo.Util/1.0.0": {
-        "compileOnly": true
       }
     }
   },
@@ -2160,17 +2146,12 @@
       "path": "swashbuckle.aspnetcore.swaggerui/5.4.1",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.5.4.1.nupkg.sha512"
     },
-    "Nibo.Application/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Nibo.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Nibo.Infra/1.0.0": {
+    "Nibo.Util/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -3582,11 +3563,6 @@
     },
     "WindowsBase/4.0.0.0": {
       "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Nibo.Util/1.0.0": {
-      "type": "project",
       "serviceable": false,
       "sha512": ""
     }

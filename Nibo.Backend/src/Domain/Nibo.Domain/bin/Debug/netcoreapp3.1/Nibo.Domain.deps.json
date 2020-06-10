@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "Nibo.Domain/1.0.0": {
+        "dependencies": {
+          "Nibo.Util": "1.0.0"
+        },
         "runtime": {
           "Nibo.Domain.dll": {}
+        }
+      },
+      "Nibo.Util/1.0.0": {
+        "runtime": {
+          "Nibo.Util.dll": {}
         }
       }
     }
   },
   "libraries": {
     "Nibo.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Nibo.Util/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

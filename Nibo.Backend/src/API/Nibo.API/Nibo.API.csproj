@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Nibo.Util\Nibo.Util.csproj" />
-    <ProjectReference Include="..\..\Application\Nibo.Application\Nibo.Application.csproj" />
     <ProjectReference Include="..\..\Domain\Nibo.Domain\Nibo.Domain.csproj" />
     <ProjectReference Include="..\..\Util\Nibo.Util\Nibo.Util.csproj" />
   </ItemGroup>

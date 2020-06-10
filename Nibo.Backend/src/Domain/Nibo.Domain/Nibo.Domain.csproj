@@ -5,12 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
     <Folder Include="Commands\" />
     <Folder Include="Handlers\" />
     <Folder Include="Events\" />
     <Folder Include="Queries\" />
-    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Util\Nibo.Util\Nibo.Util.csproj" />
   </ItemGroup>
 
 </Project>

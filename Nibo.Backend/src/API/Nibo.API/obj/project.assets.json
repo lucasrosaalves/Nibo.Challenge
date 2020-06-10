@@ -83,39 +83,17 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Nibo.Application/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "Nibo.Domain": "1.0.0",
-          "Nibo.Infra": "1.0.0",
-          "Nibo.Util": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Nibo.Application.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Nibo.Application.dll": {}
-        }
-      },
       "Nibo.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Nibo.Util": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Nibo.Domain.dll": {}
         },
         "runtime": {
           "bin/placeholder/Nibo.Domain.dll": {}
-        }
-      },
-      "Nibo.Infra/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/Nibo.Infra.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Nibo.Infra.dll": {}
         }
       },
       "Nibo.Util/1.0.0": {
@@ -295,20 +273,10 @@
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
-    "Nibo.Application/1.0.0": {
-      "type": "project",
-      "path": "../../Application/Nibo.Application/Nibo.Application.csproj",
-      "msbuildProject": "../../Application/Nibo.Application/Nibo.Application.csproj"
-    },
     "Nibo.Domain/1.0.0": {
       "type": "project",
       "path": "../../Domain/Nibo.Domain/Nibo.Domain.csproj",
       "msbuildProject": "../../Domain/Nibo.Domain/Nibo.Domain.csproj"
-    },
-    "Nibo.Infra/1.0.0": {
-      "type": "project",
-      "path": "../../Infra/Nibo.Infra/Nibo.Infra.csproj",
-      "msbuildProject": "../../Infra/Nibo.Infra/Nibo.Infra.csproj"
     },
     "Nibo.Util/1.0.0": {
       "type": "project",
@@ -319,7 +287,6 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.9.10",
-      "Nibo.Application >= 1.0.0",
       "Nibo.Domain >= 1.0.0",
       "Nibo.Util >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.4.1"
@@ -357,12 +324,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\Nibo.Util\\Nibo.Util.csproj": {
-              "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\Nibo.Util\\Nibo.Util.csproj"
-            },
-            "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Application\\Nibo.Application\\Nibo.Application.csproj": {
-              "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Application\\Nibo.Application\\Nibo.Application.csproj"
-            },
             "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj": {
               "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj"
             },
