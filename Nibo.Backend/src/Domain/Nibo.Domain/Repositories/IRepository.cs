@@ -1,10 +1,8 @@
 ﻿using Nibo.Domain.Entities;
-using System;
 
 namespace Nibo.Domain.Repositories
 {
-    public interface IRepository<T> : IDisposable where T : IAggregateRoot
+    public interface IRepository<T>  where T : IAggregateRoot
     {
-        IUnitOfWork UnitOfWork { get; }
     }
 }

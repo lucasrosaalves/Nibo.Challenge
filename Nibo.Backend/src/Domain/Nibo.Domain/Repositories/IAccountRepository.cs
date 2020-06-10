@@ -6,9 +6,8 @@ namespace Nibo.Domain.Repositories
 {
     public interface IAccountRepository : IRepository<Account>
     {
-        Task AddAsync();
-        Task UpdateAsync();
-        Task<Account> GetByBankAccount(string bank, string account);
+        Task UpdateOrInsertAsync(Account account);
         Task<IEnumerable<Account>> GetAll();
+        Task<Account> GetByBankAccount(string bank, string account);
     }
 }

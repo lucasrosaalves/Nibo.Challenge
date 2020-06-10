@@ -32,7 +32,10 @@ namespace Nibo.Domain.Entities
             if (ReferenceEquals(this, compareTo)) return true;
             if (ReferenceEquals(null, compareTo)) return false;
 
-            return compareTo.Value == Value && compareTo.Date == Date && compareTo.Description == Description;
+            return 
+                decimal.Compare(compareTo.Value,Value) == 0  &&
+                DateTime.Compare(compareTo.Date, Date) == 0 && 
+                compareTo.Description == Description;
         }
     }
 }

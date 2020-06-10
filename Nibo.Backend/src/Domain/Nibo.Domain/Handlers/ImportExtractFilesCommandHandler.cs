@@ -2,6 +2,7 @@
 using MediatR;
 using Nibo.Domain.Commands;
 using Nibo.Domain.Entities;
+using Nibo.Domain.Repositories;
 using Nibo.Util.Extensions;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,17 @@ namespace Nibo.Domain.Handlers
 {
     public class ImportExtractFilesCommandHandler : CommandHandler, IRequestHandler<ImportExtractFilesCommand, ValidationResult>
     {
-        public Task<ValidationResult> Handle(ImportExtractFilesCommand request, CancellationToken cancellationToken)
+        private readonly IAccountRepository _accountRepository;
+        public ImportExtractFilesCommandHandler(IAccountRepository accountRepository)
+        {
+            _accountRepository = accountRepository;
+        }
+
+        public async Task<ValidationResult> Handle(ImportExtractFilesCommand request, CancellationToken cancellationToken)
         {
             if (!request.IsValid())
             {
-                return Task.FromResult(request.ValidationResult);
+                return request.ValidationResult;
             }
 
             var extracts = new List<Extract>();
@@ -33,9 +40,12 @@ namespace Nibo.Domain.Handlers
 
             foreach (var accountDetail in accountsDetails)
             {
-                // go to repositorty to get Account details
+                var account =  await _accountRepository.GetByBankAccount(accountDetail.Bank, accountDetail.AccountNumber);
 
-                var account = new Account(accountDetail.Bank, accountDetail.AccountNumber);
+                if(account is null)
+                {
+                    account = new Account(accountDetail.Bank, accountDetail.AccountNumber);
+                }
 
                 var transactions = extracts.Where(p => p.AccountDetails.Equals(accountDetail)).SelectMany(p => p.Transactions);
 
@@ -43,16 +53,10 @@ namespace Nibo.Domain.Handlers
 
                 account.AddTransactions(transactions);
 
-
-                //save
-
+                await _accountRepository.UpdateOrInsertAsync(account);
             }
 
-
-            
-
-
-            return Task.FromResult(ValidationResult);
+            return ValidationResult;
         }
     }
 }

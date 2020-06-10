@@ -7,11 +7,9 @@ namespace Nibo.Domain.Entities
 {
     public class Account : IAggregateRoot
     {
-        private List<Transaction> _transactions;
-
         public Guid Id { get; private set; }
         public AccountDetails Details { get; private set; }
-        public IReadOnlyCollection<Transaction> Transactions => _transactions ?? new List<Transaction>();
+        public List<Transaction> Transactions { get; private set; }
 
         protected Account() { }
 
@@ -19,7 +17,7 @@ namespace Nibo.Domain.Entities
         {
             Id = Guid.NewGuid();
             Details = new AccountDetails(bank, number);
-            _transactions = new List<Transaction>();
+            Transactions = new List<Transaction>();
         }
 
         public void AddTransactions(IEnumerable<Transaction> transactions)
@@ -37,18 +35,17 @@ namespace Nibo.Domain.Entities
 
         public void AddTransaction(Transaction transaction)
         {
-            if (_transactions.IsNullOrEmpty())
+            if (Transactions.IsNullOrEmpty())
             {
-                _transactions = new List<Transaction>();
+                Transactions = new List<Transaction>();
             }
 
-
-            if(_transactions.Any(p=> transaction.Equals(p)))
+            if (Transactions.Any(p=> transaction.Equals(p)))
             {
                 return;
             }
 
-            _transactions.Add(transaction);
+            Transactions.Add(transaction);
         }
     }
 }

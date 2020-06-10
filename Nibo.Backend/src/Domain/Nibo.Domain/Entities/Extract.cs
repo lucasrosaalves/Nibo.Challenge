@@ -149,7 +149,9 @@ namespace Nibo.Domain.Entities
                     day = daysInMonth;
                 }
 
-                return new DateTime(year, month, day, hour, minute, second);
+                var date =  new DateTime(year, month, day, hour, minute, second);
+
+                return date.ToUniversalTime();
             }
             catch
             {

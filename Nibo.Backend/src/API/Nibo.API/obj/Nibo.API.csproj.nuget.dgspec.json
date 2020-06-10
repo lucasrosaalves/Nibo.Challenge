@@ -142,6 +142,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[8.0.1, )"
+            },
+            "MongoDB.Bson": {
+              "target": "Package",
+              "version": "[2.10.4, )"
             }
           },
           "imports": [
@@ -209,6 +213,10 @@
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
               "version": "[3.1.5, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.10.4, )"
             }
           },
           "imports": [
