@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Nibo.Util.Extensions;
 
 namespace Nibo.API.Controllers
 {
@@ -40,60 +41,42 @@ namespace Nibo.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromForm] MyFileUploadClass @class)
+        public async Task<IActionResult> Post([FromForm] MyFileUploadClass model)
         {
             try
             {
-                var files = @class.Files;
-                long tamanhoArquivos = files.Sum(f => f.Length);
-                var caminhoArquivo = Path.GetTempFileName();
+                if(model is null || model.Files.IsNullOrEmpty())
+                {
+                    return BadRequest();
+                }
 
-                foreach (var file in files)
-                {        
+                var arquivos = new List<Arquivo>();
+
+                foreach (var file in model.Files)
+                {
                     if (file is null || file.Length == 0)
                     {
                         continue;
                     }
 
-                    StringBuilder resultado = new StringBuilder();
-                    int nivel = 0;
+                    var linhas = new List<string>();
 
-                    var content = file.OpenReadStream();
-
-                    using (StreamReader sr = new StreamReader(content))
+                    using (StreamReader sr = new StreamReader(file.OpenReadStream()))
                     {
-                        //string linha = await sr.ReadToEndAsync();
                         string linha = string.Empty;
 
                         while ((linha = sr.ReadLine()) != null)
                         {
                             linha = linha.Trim();
-
-                            if (linha.StartsWith("</") && linha.EndsWith(">"))
-                            {
-                                AddTabs(resultado, nivel, true);
-                                nivel--;
-                                resultado.Append(linha);
-                            }
-                            else if (linha.StartsWith("<") && linha.EndsWith(">"))
-                            {
-                                nivel++;
-                                AddTabs(resultado, nivel, true);
-                                resultado.Append(linha);
-                            }
-                            else if (linha.StartsWith("<") && !linha.EndsWith(">"))
-                            {
-                                AddTabs(resultado, nivel + 1, true);
-                                resultado.Append(linha);
-                                resultado.Append(ReturnFinalTag(linha));
-                            }
+                            linhas.Add(linha.Trim());
                         }
                     }
 
+                    arquivos.Add(new Arquivo(linhas));
 
                 }
 
-                return Ok();
+                return Ok(arquivos);
             }
             catch (Exception ex)
             {
@@ -101,39 +84,228 @@ namespace Nibo.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        private static void AddTabs(StringBuilder stringObject, int lengthTabs, bool newLine)
-        {
-            if (newLine)
-            {
-                stringObject.AppendLine();
-            }
-            for (int j = 1; j < lengthTabs; j++)
-            {
-                stringObject.Append("\t");
-            }
-        }
 
-        private static String ReturnFinalTag(String content)
-        {
-            String returnFinal = "";
-
-            if ((content.IndexOf("<") != -1) && (content.IndexOf(">") != -1))
-            {
-                int position1 = content.IndexOf("<");
-                int position2 = content.IndexOf(">");
-                if ((position2 - position1) > 2)
-                {
-                    returnFinal = content.Substring(position1, (position2 - position1) + 1);
-                    returnFinal = returnFinal.Replace("<", "</");
-                }
-            }
-
-            return returnFinal;
-        }
 
         public class MyFileUploadClass
         {
             public IFormFile[] Files { get; set; }
+        }
+
+        public class Arquivo
+        {
+            private List<Transacao> _transacoes;
+
+            public string Banco { get; private set; }
+            public string Conta { get; private set; }
+            public DateTime DataInicio { get; private set; }
+            public DateTime DataFim { get; private set; }
+            public IReadOnlyCollection<Transacao> Transacoes => _transacoes ?? new List<Transacao>();
+
+            protected Arquivo() { }
+
+            public Arquivo(IEnumerable<string> lines)
+            {
+                if(lines is null) { return; }
+
+                SetBank(lines);
+                SetAccount(lines);
+                SetStartDate(lines);
+                SetEndDate(lines);
+                SetTransacoes(lines);
+            }
+
+            private void SetBank(IEnumerable<string> lines)
+            {
+                Banco = GetFirstElementValueByTag(lines, Tag.BANKID);
+            }
+
+            private void SetAccount(IEnumerable<string> lines)
+            {
+                Conta = GetFirstElementValueByTag(lines, Tag.ACCTID);
+            }
+
+            private void SetStartDate(IEnumerable<string> lines)
+            {
+                DataInicio = GetFirstElementDateByTag(lines, Tag.DTSTART);
+            }
+
+            private void SetEndDate(IEnumerable<string> lines)
+            {
+                DataFim = GetFirstElementDateByTag(lines, Tag.DTEND);
+            }
+
+            private void SetTransacoes(IEnumerable<string> lines)
+            {
+                _transacoes = new List<Transacao>();
+                var ranges = GetRangeOfElementsByTag(lines, Tag.STMTTRN);
+
+                if(ranges is null || !ranges.Any()) { return; }
+
+                foreach(var range in ranges)
+                {
+                    var elements = range.GetElementsBetweenRange(lines);
+
+                    var type = GetFirstElementValueByTag(elements, Tag.TRNTYPE);
+                    var date = GetFirstElementDateByTag(elements, Tag.DTPOSTED);
+                    var value = GetFirstElementDecimalByTag(elements, Tag.TRNAMT);
+                    var description = GetFirstElementValueByTag(elements, Tag.MEMO);
+
+
+                    _transacoes.Add(new Transacao(type, date, value, description));
+
+                }
+            }
+
+            private List<Position> GetRangeOfElementsByTag(IEnumerable<string> lines, Tag @tag)
+            {
+                var ranges = new List<Position>();
+                string startTagNode = GetStartTagNode(@tag);
+                string endTagNode = GetEndTagNode(@tag);
+
+                for (int i = 0; i < lines.Count(); i++)
+                {
+                    if (!lines.ElementAt(i).StartsWith(startTagNode)) { continue; }
+
+                    int start = i;
+                    int? end = GetClosestNodeTagPosition(lines, i, endTagNode);
+
+                    if(!end.HasValue) { continue; }
+
+                    ranges.Add(new Position(start, end.Value));
+                }
+
+                return ranges;
+            }
+
+            private int? GetClosestNodeTagPosition(IEnumerable<string> lines, int position, string nodeTag)
+            {
+                if(position + 1 >= lines.Count()) { return null; };
+
+                for (int i = position + 1; i < lines.Count(); i++)
+                {
+                    if (lines.ElementAt(i).StartsWith(nodeTag))
+                    {
+                        return i;
+                    }
+                }
+
+                return null;
+            }
+
+            private string GetStartTagNode(Tag tag)
+            {
+                return string.Concat("<", @tag.ToString(), ">");
+            }
+
+            private string GetEndTagNode(Tag tag)
+            {
+                return string.Concat("</", @tag.ToString(), ">");
+            }
+
+            private string GetFirstElementValueByTag(IEnumerable<string> lines, Tag @tag)
+            {
+                string tagValue = GetStartTagNode(@tag);
+
+                string element = lines.FirstOrDefault(p => p.StartsWith(tagValue));
+
+                return element.Split('>').ElementAt(1);
+            }
+
+            private decimal? GetFirstElementDecimalByTag(IEnumerable<string> lines, Tag @tag)
+            {
+                string value = GetFirstElementValueByTag(lines, @tag);
+
+                try
+                {
+                    return Convert.ToDecimal(value);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            private DateTime GetFirstElementDateByTag(IEnumerable<string> lines, Tag @tag)
+            {
+                string value = GetFirstElementValueByTag(lines, @tag);
+
+                if (string.IsNullOrWhiteSpace(value)) { return DateTime.MinValue; }
+
+                var sDate = new string(value.Where(char.IsDigit).ToArray());
+
+                if (string.IsNullOrWhiteSpace(sDate)) { return DateTime.MinValue; }
+
+                int year = int.Parse(sDate.Substring(0, 4));
+                int month = int.Parse(sDate.Substring(4, 2));
+                int day = int.Parse(sDate.Substring(6, 2));
+                int hour = sDate.Length >= 10 ? int.Parse(sDate.Substring(8, 2)) : 0;
+                int minute = sDate.Length >= 12 ? int.Parse(sDate.Substring(10, 2)) : 0;
+                int second = sDate.Length >= 14 ? int.Parse(sDate.Substring(12, 2)) : 0;
+
+                return new DateTime(year, month, day, hour, minute, second);
+            }
+        }
+
+
+        public class Position
+        {
+            public Position(int start, int end)
+            {
+                Start = start;
+                End = end;
+            }
+
+            public int Start { get; private set; }
+            public int End { get; private set; }
+
+            public List<string> GetElementsBetweenRange(IEnumerable<string> elements)
+            {
+                var response = new List<string>();
+                for (int i = Start + 1; i < End; i++)
+                {
+                    response.Add(elements.ElementAt(i));
+                }
+
+                return response;
+            }         
+        }
+
+        public class Transacao
+        {
+
+            protected Transacao() { }
+
+            public Transacao(
+                string operacao, 
+                DateTime dataOperacao,
+                decimal? valor, 
+                string descricao)
+            {
+                Operacao = operacao;
+                DataOperacao = dataOperacao;
+                Valor = valor;
+                Descricao = descricao;
+            }
+
+            public string Operacao { get; private set; }
+            public DateTime DataOperacao { get;  private set; }
+            public decimal? Valor { get; private set; }
+            public string Descricao { get; private set; }
+
+
+        }
+
+        public enum Tag
+        {
+            BANKID,
+            ACCTID,
+            DTSTART,
+            DTEND,
+            STMTTRN,
+            TRNTYPE,
+            DTPOSTED,
+            TRNAMT,
+            MEMO
         }
     }
 }

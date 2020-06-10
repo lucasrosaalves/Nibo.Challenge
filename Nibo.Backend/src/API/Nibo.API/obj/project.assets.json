@@ -312,8 +312,8 @@
     },
     "Nibo.Util/1.0.0": {
       "type": "project",
-      "path": "../../../Nibo.Util/Nibo.Util.csproj",
-      "msbuildProject": "../../../Nibo.Util/Nibo.Util.csproj"
+      "path": "../../Util/Nibo.Util/Nibo.Util.csproj",
+      "msbuildProject": "../../Util/Nibo.Util/Nibo.Util.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -365,6 +365,9 @@
             },
             "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj": {
               "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Domain\\Nibo.Domain\\Nibo.Domain.csproj"
+            },
+            "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Util\\Nibo.Util\\Nibo.Util.csproj": {
+              "projectPath": "C:\\Projetos\\Pessoal\\Nibo\\Nibo.Backend\\src\\Util\\Nibo.Util\\Nibo.Util.csproj"
             }
           }
         }
