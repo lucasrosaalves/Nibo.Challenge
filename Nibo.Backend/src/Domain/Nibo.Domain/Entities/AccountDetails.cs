@@ -22,5 +22,11 @@
 
             return compareTo.Bank == Bank && compareTo.AccountNumber == AccountNumber;
         }
+
+        public override int GetHashCode()
+        {
+            return (GetType().GetHashCode() * 907) + (Bank + AccountNumber).GetHashCode();
+        }
+
     }
 }

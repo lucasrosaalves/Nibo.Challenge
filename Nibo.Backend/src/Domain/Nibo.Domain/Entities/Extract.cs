@@ -1,4 +1,5 @@
 ﻿using Nibo.Domain.Enum;
+using Nibo.Util.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace Nibo.Domain.Entities
 
             AccountDetails = new AccountDetails(bank, accountNumber);
         }
+
         private void SetTransactions(IEnumerable<string> lines)
         {
             _transactions = new List<Transaction>();
@@ -44,7 +46,7 @@ namespace Nibo.Domain.Entities
 
                 var type = GetFirstElementByTag(elements, ETag.TRNTYPE);
                 var date = GetFirstDateElementByTag(elements, ETag.DTPOSTED);
-                var value = GetFirstDecimalElementByTag(elements, ETag.TRNAMT);
+                var value = GetFirstElementByTag(elements, ETag.TRNAMT).TryParseDecimal();
                 var description = GetFirstElementByTag(elements, ETag.MEMO);
 
                 if (!value.HasValue || !date.HasValue)
@@ -107,56 +109,46 @@ namespace Nibo.Domain.Entities
 
             string element = lines.FirstOrDefault(p => p.StartsWith(tagValue));
 
-            return element.Split('>').ElementAt(1);
-        }
+            if (element.IsNullOrWhiteSpace()) { return string.Empty; }
 
-        private decimal? GetFirstDecimalElementByTag(IEnumerable<string> lines, ETag @tag)
-        {
-            string value = GetFirstElementByTag(lines, @tag);
-
-            try
-            {
-                return Convert.ToDecimal(value);
-            }
-            catch
-            {
-                return null;
-            }
+            return element.Split('>')?.ElementAt(1);
         }
 
         private DateTime? GetFirstDateElementByTag(IEnumerable<string> lines, ETag @tag)
         {
             string value = GetFirstElementByTag(lines, @tag);
 
-            try
-            {
-                if (string.IsNullOrWhiteSpace(value)) { return DateTime.MinValue; }
+            var sDate = value.KeepOnlyNumericValue();
 
-                var sDate = new string(value.Where(char.IsDigit).ToArray());
+            if (string.IsNullOrWhiteSpace(sDate)) { return null; }
 
-                if (string.IsNullOrWhiteSpace(sDate)) { return DateTime.MinValue; }
+            int? year = sDate.TryParseInt(0, 4);
+            int? month = sDate.TryParseInt(4, 2);
+            int? day = sDate.TryParseInt(6, 2);
 
-                int year = int.Parse(sDate.Substring(0, 4));
-                int month = int.Parse(sDate.Substring(4, 2));
-                int day = int.Parse(sDate.Substring(6, 2));
-                int hour = sDate.Length >= 10 ? int.Parse(sDate.Substring(8, 2)) : 0;
-                int minute = sDate.Length >= 12 ? int.Parse(sDate.Substring(10, 2)) : 0;
-                int second = sDate.Length >= 14 ? int.Parse(sDate.Substring(12, 2)) : 0;
-
-                int daysInMonth = DateTime.DaysInMonth(year, month);
-                if (day > daysInMonth)
-                {
-                    day = daysInMonth;
-                }
-
-                var date =  new DateTime(year, month, day, hour, minute, second);
-
-                return date.ToUniversalTime();
-            }
-            catch
+            if (!year.HasValue || !month.HasValue || !day.HasValue)
             {
                 return null;
             }
+
+            int daysInMonth = DateTime.DaysInMonth(year.Value, month.Value);
+            if (day > daysInMonth)
+            {
+                day = daysInMonth;
+            }
+
+            int hour = sDate.TryParseInt(8, 2) ?? 0;
+            int minute = sDate.TryParseInt(10, 2) ?? 0;
+            int second = sDate.TryParseInt(12, 2) ?? 0;
+
+            return new DateTime(
+                year.Value,
+                month.Value,
+                day.Value,
+                hour,
+                minute,
+                second)
+                .ToUniversalTime();
         }
     }
 }

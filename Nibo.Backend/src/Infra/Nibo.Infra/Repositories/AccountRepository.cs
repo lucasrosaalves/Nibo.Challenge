@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
 using Nibo.Domain.Entities;
 using Nibo.Domain.Repositories;
-using Nibo.Domain.Settings;
+using Nibo.Infra.Settings;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,12 +11,12 @@ namespace Nibo.Infra.Repositories
     {
         private readonly IMongoCollection<Account> _account;
 
-        public AccountRepository(IDatabaseSettings settings)
+        public AccountRepository(IMongoSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _account = database.GetCollection<Account>(settings.CollectionName);
+            _account = database.GetCollection<Account>(nameof(Account));
         }
 
         public async Task UpdateOrInsertAsync(Account account)

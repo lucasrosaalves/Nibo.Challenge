@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
-using Microsoft.AspNetCore.Http;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Nibo.API.Extensions;
 using Nibo.API.ViewModels;
 using Nibo.Domain.Commands;
-using Nibo.Domain.Entities;
-using Nibo.Util.Extensions;
+using Nibo.Domain.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Nibo.API.Controllers
 {
@@ -20,10 +15,13 @@ namespace Nibo.API.Controllers
     public class AccountController : MainController
     {
         private readonly IMediator _mediator;
+        private readonly IAccountRepository _accountRepository;
 
-        public AccountController(IMediator mediator)
+        public AccountController(IMediator mediator,
+            IAccountRepository accountRepository)
         {
             _mediator = mediator;
+            _accountRepository = accountRepository;
         }
 
         [HttpPost("import")]
@@ -35,11 +33,33 @@ namespace Nibo.API.Controllers
 
                 var files = model.Files.Select(p => p.GetLines());
 
-                var resultado = await _mediator.Send(new ImportExtractFilesCommand(files));
+                var result = await _mediator.Send(new ImportExtractFilesCommand(files));
 
-                return CustomResponse(resultado);
+                return CustomResponse(result);
             }
             catch(Exception ex)
+            {
+                return HandleException(ex);
+            }
+        }
+
+        [HttpGet("getall")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var accounts = await _accountRepository.GetAll();
+
+                var result = accounts?.Select(a =>
+                {
+                    var transactions = a.Transactions.Select(t => new TransactionViewModel(t.Date, t.Value, t.Description));
+
+                    return new AccountViewModel(a.Details.Bank, a.Details.AccountNumber, a.CalculateBalance(), transactions);
+                }) ?? new List<AccountViewModel>();
+
+                return CustomResponse(result);
+            }
+            catch (Exception ex)
             {
                 return HandleException(ex);
             }

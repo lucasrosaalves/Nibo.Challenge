@@ -37,5 +37,10 @@ namespace Nibo.Domain.Entities
                 DateTime.Compare(compareTo.Date, Date) == 0 && 
                 compareTo.Description == Description;
         }
+
+        public override int GetHashCode()
+        {
+            return (GetType().GetHashCode() * 907) + Id.GetHashCode();
+        }
     }
 }

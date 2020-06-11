@@ -9,7 +9,7 @@ namespace Nibo.Domain.Entities
     {
         public Guid Id { get; private set; }
         public AccountDetails Details { get; private set; }
-        public List<Transaction> Transactions { get; private set; }
+        public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
 
         protected Account() { }
 
@@ -19,6 +19,9 @@ namespace Nibo.Domain.Entities
             Details = new AccountDetails(bank, number);
             Transactions = new List<Transaction>();
         }
+
+        public decimal CalculateBalance()
+            => Transactions?.Sum(p => p.Value) ?? 0;
 
         public void AddTransactions(IEnumerable<Transaction> transactions)
         {

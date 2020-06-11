@@ -5,10 +5,3 @@ C:\Projetos\Pessoal\Nibo\Nibo.Backend\Nibo.Util\obj\Debug\netcoreapp3.1\Nibo.Uti
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\Nibo.Util\obj\Debug\netcoreapp3.1\Nibo.Util.AssemblyInfo.cs
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\Nibo.Util\obj\Debug\netcoreapp3.1\Nibo.Util.dll
 C:\Projetos\Pessoal\Nibo\Nibo.Backend\Nibo.Util\obj\Debug\netcoreapp3.1\Nibo.Util.pdb
-C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Util\Nibo.Util\bin\Debug\netcoreapp3.1\Nibo.Util.deps.json
-C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Util\Nibo.Util\bin\Debug\netcoreapp3.1\Nibo.Util.dll
-C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Util\Nibo.Util\bin\Debug\netcoreapp3.1\Nibo.Util.pdb
-C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Util\Nibo.Util\obj\Debug\netcoreapp3.1\Nibo.Util.AssemblyInfoInputs.cache
-C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Util\Nibo.Util\obj\Debug\netcoreapp3.1\Nibo.Util.AssemblyInfo.cs
-C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Util\Nibo.Util\obj\Debug\netcoreapp3.1\Nibo.Util.dll
-C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Util\Nibo.Util\obj\Debug\netcoreapp3.1\Nibo.Util.pdb
