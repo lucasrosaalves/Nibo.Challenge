@@ -1,0 +1,10 @@
+.back-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

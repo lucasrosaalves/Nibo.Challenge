@@ -52,7 +52,10 @@ namespace Nibo.API.Controllers
 
                 var result = accounts?.Select(a =>
                 {
-                    var transactions = a.Transactions.Select(t => new TransactionViewModel(t.Date, t.Value, t.Description));
+                    var transactions = 
+                    a.Transactions
+                    .OrderByDescending(p=> p.Date)
+                    .Select(t => new TransactionViewModel(t.Date, t.Value, t.Description));
 
                     return new AccountViewModel(a.Details.Bank, a.Details.AccountNumber, a.CalculateBalance(), transactions);
                 }) ?? new List<AccountViewModel>();

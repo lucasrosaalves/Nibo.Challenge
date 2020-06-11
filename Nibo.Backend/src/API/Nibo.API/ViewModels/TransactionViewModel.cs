@@ -9,13 +9,13 @@ namespace Nibo.API.ViewModels
             decimal value, 
             string description)
         {
-            Date = date;
-            Value = value;
+            Date = date.ToString("dd/MM/yyyy HH:mm");
+            Value = string.Format("{0:C}", value);
             Description = description;
         }
 
-        public DateTime Date { get;}
-        public decimal Value { get;}
+        public string Date { get;}
+        public string Value { get;}
         public string Description { get; }
     }
 

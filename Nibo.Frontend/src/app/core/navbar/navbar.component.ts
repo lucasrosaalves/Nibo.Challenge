@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterService } from '../services/router.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
+  isMenuCollapsed = true;
+  constructor(private routerService: RouterService) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  goToHome(){
+    this.routerService.goToHome();
   }
-
 }

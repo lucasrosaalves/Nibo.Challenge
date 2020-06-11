@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { apiRoutes } from '../constants/api-routes';
+import { AccountData } from 'src/app/shared/models/account';
 
 @Injectable()
-export class HomeService {
-
+export class AccountService {
     constructor(private http: HttpClient) {
-
     }
 
     uploadFiles(fileList: FileList) {
@@ -13,7 +13,11 @@ export class HomeService {
         for (let index = 0; index < fileList.length; index++) {
             formData.append('files', fileList[index], fileList[index].name);
         }
-
-        return this.http.post('https://localhost:44307/api/Account/import', formData);
+        return this.http.post(apiRoutes.import, formData);
     }
+
+    getAll(){
+        return this.http.get<AccountData[]>(apiRoutes.getall);
+    }
+
 }

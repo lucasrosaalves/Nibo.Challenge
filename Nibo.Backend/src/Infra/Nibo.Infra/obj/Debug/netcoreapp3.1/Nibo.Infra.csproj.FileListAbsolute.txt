@@ -1,0 +1,13 @@
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\bin\Debug\netcoreapp3.1\Nibo.Infra.deps.json
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\bin\Debug\netcoreapp3.1\Nibo.Infra.dll
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\bin\Debug\netcoreapp3.1\Nibo.Infra.pdb
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\bin\Debug\netcoreapp3.1\Nibo.Domain.dll
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\bin\Debug\netcoreapp3.1\Nibo.Util.dll
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\bin\Debug\netcoreapp3.1\Nibo.Domain.pdb
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\bin\Debug\netcoreapp3.1\Nibo.Util.pdb
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\obj\Debug\netcoreapp3.1\Nibo.Infra.csprojAssemblyReference.cache
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\obj\Debug\netcoreapp3.1\Nibo.Infra.AssemblyInfoInputs.cache
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\obj\Debug\netcoreapp3.1\Nibo.Infra.AssemblyInfo.cs
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\obj\Debug\netcoreapp3.1\Nibo.Infra.csproj.CopyComplete
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\obj\Debug\netcoreapp3.1\Nibo.Infra.dll
+C:\Projetos\Pessoal\Nibo\Nibo.Backend\src\Infra\Nibo.Infra\obj\Debug\netcoreapp3.1\Nibo.Infra.pdb

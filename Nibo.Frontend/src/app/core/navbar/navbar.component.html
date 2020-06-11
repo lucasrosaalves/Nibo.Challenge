@@ -1,10 +1,19 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-  <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" href="#">Features</a>
-    <a class="p-2 text-dark" href="#">Enterprise</a>
-    <a class="p-2 text-dark" href="#">Support</a>
-    <a class="p-2 text-dark" href="#">Pricing</a>
-  </nav>
-  <a class="btn btn-outline-primary" href="#">Sign up</a>
-</div>
+<nav class="navbar navbar-expand-lg  bg-white border-bottom shadow-sm">
+  <a class="navbar-brand" [routerLink]="'/home'">
+    Xayah 
+  </a>
+  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    &#9776;
+  </button>
+
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse justify-content-end">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/upload'" (click)="isMenuCollapsed = true">Upload</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/account'" (click)="isMenuCollapsed = true">Movimentações</a>
+      </li>
+    </ul>
+  </div>
+</nav>

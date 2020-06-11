@@ -1,37 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { HomeService } from '../core/services/home.service';
+import { Component } from '@angular/core';
+import { RouterService } from '../core/services/router.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   fileList: FileList;
-  constructor(private homeService: HomeService) { }
+  constructor(private routerService: RouterService) { }
 
-  ngOnInit() {
+  goToUpload(){
+    this.routerService.goToUpload();
   }
 
-  submit(form: NgForm) {
-    if (form.invalid || !this.fileList || this.fileList.length === 0) {
-      return;
-    }
-    this.homeService.uploadFiles(this.fileList).subscribe(
-      data => {
-        console.log('success');
-        console.log(data);
-      },
-      error => console.log(error)
-    );
-
-  }
-
-  fileChange(event) {
-    if (event.target.files && event.target.files.length > 0) {
-      this.fileList = event.target.files;
-    }
+  goToAccount(){
+    this.routerService.goToAccount();
   }
 }
