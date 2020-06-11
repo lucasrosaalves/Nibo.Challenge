@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  nibofrontend:
+    build:
+      context: ./SRC/Nibo.Frontend
+      dockerfile: Dockerfile
+    container_name: "nibofrontend"
+    depends_on:
+      - nibobackend
+    ports:
+      - "4200:80"
+  nibobackend:
+    build:
+      context: ./SRC/Nibo.Backend
+      dockerfile: Dockerfile
+    container_name: "nibobackend"
+    ports:
+      - "5000:80"
+    networks:
+      - nibo-network
+  mongo:
+    image: mongo:latest
+    container_name: "mongo"
+    ports:
+      - 27017:27017
+    networks:
+      - nibo-network
+networks:
+  nibo-network:
+    driver: bridge   
